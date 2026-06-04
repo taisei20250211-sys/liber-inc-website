@@ -1,0 +1,66 @@
+{
+  "company": {
+    "name": "Liber Inc.",
+    "tagline": "自由な発想で、価値を創る",
+    "description": "Liber Inc. は、クリエイティブとビジネスを掛け合わせ、クライアントの課題を解決するフリーランスチームです。営業・マーケティング・制作・ナレッジの4部門が連携し、一気通貫でサポートします。"
+  },
+  "departments": [
+    {
+      "id": "sales",
+      "name": "Sales",
+      "nameJa": "営業",
+      "description": "クライアントとの最初の接点を担う部門。提案書・見積書・契約書の作成から、商談のサポートまで一手に引き受けます。",
+      "responsibilities": [
+        "提案書・見積書の作成",
+        "契約関連資料の管理",
+        "クライアント折衝・商談サポート"
+      ],
+      "icon": "briefcase",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "nameJa": "マーケティング",
+      "description": "SNS運用とコンテンツマーケティングを中心に、ブランドの認知拡大と集客を担当。データに基づいた戦略立案から実行まで行います。",
+      "responsibilities": [
+        "SNSアカウント運用・コンテンツ制作",
+        "コンテンツマーケティング戦略",
+        "Instagram Reels 企画・プロット作成"
+      ],
+      "icon": "megaphone",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "production",
+      "name": "Production",
+      "nameJa": "制作",
+      "description": "クライアントから受託したコンテンツ制作を担当。バナー・LP・広告クリエイティブ・Web制作まで、幅広い制作物に対応します。",
+      "responsibilities": [
+        "バナー・広告クリエイティブ制作",
+        "LP（ランディングページ）制作",
+        "Web・SNSコンテンツ制作"
+      ],
+      "icon": "layers",
+      "color": "#10b981"
+    },
+    {
+      "id": "knowledge",
+      "name": "Knowledge",
+      "nameJa": "ナレッジ",
+      "description": "全部門共通の知見・ノウハウを蓄積・共有するハブ。各領域で得た学びを体系化し、チーム全体のレベルアップを支えます。",
+      "responsibilities": [
+        "各領域のナレッジ・ノウハウ管理",
+        "ユーザー情報・リサーチデータの整理",
+        "GPTsやAIツールの活用ガイド"
+      ],
+      "icon": "book",
+      "color": "#f59e0b"
+    }
+  ],
+  "stats": [
+    { "label": "部門数", "value": "4" },
+    { "label": "対応領域", "value": "Sales〜Production" },
+    { "label": "AI活用", "value": "Claude / GPT Image 2" }
+  ]
+}

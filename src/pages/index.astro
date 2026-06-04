@@ -1,0 +1,507 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import DepartmentCard from '../components/DepartmentCard.astro';
+import Footer from '../components/Footer.astro';
+import siteData from '../data/site.json';
+
+const { company, departments, stats } = siteData;
+---
+
+<Layout title="Liber Inc. - 運営体制" description={company.description}>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">Company Overview</div>
+        <h1 class="hero-title">
+          {company.tagline}
+        </h1>
+        <p class="hero-description">{company.description}</p>
+        <div class="hero-stats">
+          {stats.map((stat) => (
+            <div class="stat">
+              <span class="stat-value">{stat.value}</span>
+              <span class="stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+        <a href="#departments" class="cta-btn">
+          部門を見る
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- Departments -->
+    <section id="departments" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">部門紹介</h2>
+          <p class="section-subtitle">4つの専門部門が連携して、クライアントの課題を解決します</p>
+        </div>
+        <div class="departments-grid">
+          {departments.map((dept) => (
+            <DepartmentCard {...dept} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Structure -->
+    <section id="structure" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">運営体制</h2>
+          <p class="section-subtitle">各部門が役割分担しながら、プロジェクトを一気通貫でサポートします</p>
+        </div>
+        <div class="structure-flow">
+          <div class="flow-step">
+            <div class="flow-icon" style="background: #eff6ff; color: #3b82f6">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="flow-content">
+              <div class="flow-name">Sales</div>
+              <div class="flow-desc">案件獲得・提案・契約</div>
+            </div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-icon" style="background: #f5f3ff; color: #8b5cf6">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg>
+            </div>
+            <div class="flow-content">
+              <div class="flow-name">Marketing</div>
+              <div class="flow-desc">認知・集客・コンテンツ</div>
+            </div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-icon" style="background: #ecfdf5; color: #10b981">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div class="flow-content">
+              <div class="flow-name">Production</div>
+              <div class="flow-desc">クリエイティブ制作・納品</div>
+            </div>
+          </div>
+          <div class="flow-arrow knowledge-arrow">↕</div>
+          <div class="flow-step knowledge-step">
+            <div class="flow-icon" style="background: #fffbeb; color: #f59e0b">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            </div>
+            <div class="flow-content">
+              <div class="flow-name">Knowledge</div>
+              <div class="flow-desc">全部門の知見を集約・共有</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tools-section">
+          <h3 class="tools-title">活用ツール・AI</h3>
+          <div class="tools-grid">
+            <div class="tool-item">
+              <span class="tool-badge ai">AI</span>
+              <span class="tool-name">Claude (Anthropic)</span>
+              <span class="tool-desc">業務自動化・コンテンツ生成・戦略立案</span>
+            </div>
+            <div class="tool-item">
+              <span class="tool-badge ai">AI</span>
+              <span class="tool-name">GPT Image 2 (OpenAI)</span>
+              <span class="tool-desc">バナー・LP・広告クリエイティブの画像生成</span>
+            </div>
+            <div class="tool-item">
+              <span class="tool-badge tool">Tool</span>
+              <span class="tool-name">Notion</span>
+              <span class="tool-desc">タスク・目標管理・ナレッジベース</span>
+            </div>
+            <div class="tool-item">
+              <span class="tool-badge tool">Tool</span>
+              <span class="tool-name">Google Workspace</span>
+              <span class="tool-desc">スプレッドシート・ドキュメント管理</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-card">
+          <h2 class="contact-title">一緒に、何か作りませんか？</h2>
+          <p class="contact-desc">
+            Liber Inc. では、クリエイティブ制作・SNS運用・LP制作など幅広いご依頼に対応しています。
+            まずはお気軽にご相談ください。
+          </p>
+          <a href="mailto:contact@liber-inc.com" class="contact-btn">
+            お問い合わせ
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+    overflow: hidden;
+  }
+
+  .hero .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--color-primary);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+
+  .hero-description {
+    max-width: 640px;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    padding: 24px 40px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-top: 8px;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.15s, transform 0.15s;
+    margin-top: 4px;
+  }
+
+  .cta-btn:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+  }
+
+  /* Sections */
+  .section {
+    padding: 80px 0;
+  }
+
+  .section-alt {
+    background: white;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Departments Grid */
+  .departments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Structure Flow */
+  .structure-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    min-width: 160px;
+  }
+
+  .flow-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .flow-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .flow-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .flow-desc {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+  }
+
+  .flow-arrow {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+  }
+
+  .knowledge-step {
+    border-color: #f59e0b;
+    border-style: dashed;
+    position: relative;
+  }
+
+  .knowledge-step::before {
+    content: "全部門共通";
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #f59e0b;
+    font-weight: 600;
+    white-space: nowrap;
+    background: white;
+    padding: 0 6px;
+  }
+
+  /* Tools */
+  .tools-section {
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .tools-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--color-text);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tool-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .tool-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .tool-badge.ai {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+
+  .tool-badge.tool {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--color-primary);
+  }
+
+  .tool-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  .tool-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Contact */
+  .contact-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2563eb 100%);
+    border-radius: 16px;
+    padding: 60px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-desc {
+    max-width: 520px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    line-height: 1.8;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: white;
+    color: var(--color-primary);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+
+  .contact-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .departments-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-stats {
+      gap: 24px;
+      padding: 20px 28px;
+    }
+
+    .structure-flow {
+      flex-direction: column;
+    }
+
+    .flow-arrow {
+      transform: rotate(90deg);
+    }
+
+    .knowledge-arrow {
+      transform: none;
+    }
+
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      padding: 40px 24px;
+    }
+  }
+</style>

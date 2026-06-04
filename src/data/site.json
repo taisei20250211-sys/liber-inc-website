@@ -1,8 +1,8 @@
 {
   "company": {
     "name": "Liber Inc.",
-    "tagline": "自由な発想で、価値を創る",
-    "description": "Liber Inc. は、クリエイティブとビジネスを掛け合わせ、クライアントの課題を解決するフリーランスチームです。営業・マーケティング・制作・ナレッジの4部門が連携し、一気通貫でサポートします。"
+    "tagline": "Our Crew. Our Value. Our Freedom.",
+    "description": "仲間と共にコンテンツを創り、自由に価値を届けるフリーランスチーム。"
   },
   "departments": [
     {
@@ -22,10 +22,10 @@
       "id": "marketing",
       "name": "Marketing",
       "nameJa": "マーケティング",
-      "description": "SNS運用とコンテンツマーケティングを中心に、ブランドの認知拡大と集客を担当。データに基づいた戦略立案から実行まで行います。",
+      "description": "Liber Inc. の顔となるSNSを運用する部門。代表のリアルな日常や思想を発信しながら、様々なコンセプトで自社ブランドを育てる。SNS経由の依頼は営業・制作と連携して対応。",
       "responsibilities": [
-        "SNSアカウント運用・コンテンツ制作",
-        "コンテンツマーケティング戦略",
+        "自社SNSアカウントの企画・運用",
+        "代表のリアルを届けるコンテンツ制作",
         "Instagram Reels 企画・プロット作成"
       ],
       "icon": "megaphone",

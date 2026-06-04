@@ -14,11 +14,11 @@ const { company, departments, stats } = siteData;
   <main>
     <!-- Hero -->
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-noise" aria-hidden="true"></div>
       <div class="container">
-        <div class="hero-badge">Company Overview</div>
-        <h1 class="hero-title">
-          {company.tagline}
-        </h1>
+        <div class="hero-badge">Liber Inc. — Company Overview</div>
+        <h1 class="hero-title">{company.tagline}</h1>
         <p class="hero-description">{company.description}</p>
         <div class="hero-stats">
           {stats.map((stat) => (
@@ -29,13 +29,12 @@ const { company, departments, stats } = siteData;
           ))}
         </div>
         <a href="#departments" class="cta-btn">
-          部門を見る
+          Explore Our Crew
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m6 9 6 6 6-6"/>
           </svg>
         </a>
       </div>
-      <div class="hero-bg" aria-hidden="true"></div>
     </section>
 
     <!-- Departments -->
@@ -43,7 +42,7 @@ const { company, departments, stats } = siteData;
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">部門紹介</h2>
-          <p class="section-subtitle">4つの専門部門が連携して、クライアントの課題を解決します</p>
+          <p class="section-subtitle">仲間のように連携する4つの部門。それぞれが専門性を持ちながら、自由に価値を創り続けます</p>
         </div>
         <div class="departments-grid">
           {departments.map((dept) => (
@@ -58,7 +57,7 @@ const { company, departments, stats } = siteData;
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">運営体制</h2>
-          <p class="section-subtitle">各部門が役割分担しながら、プロジェクトを一気通貫でサポートします</p>
+          <p class="section-subtitle">自社ブランドを育てながら、クライアントワークも仲間と連携して動く。それがLiber Inc. のスタイル</p>
         </div>
         <div class="structure-flow">
           <div class="flow-step">
@@ -77,7 +76,7 @@ const { company, departments, stats } = siteData;
             </div>
             <div class="flow-content">
               <div class="flow-name">Marketing</div>
-              <div class="flow-desc">認知・集客・コンテンツ</div>
+              <div class="flow-desc">自社SNS・ブランド発信</div>
             </div>
           </div>
           <div class="flow-arrow">→</div>
@@ -134,9 +133,9 @@ const { company, departments, stats } = siteData;
     <section id="contact" class="section">
       <div class="container">
         <div class="contact-card">
-          <h2 class="contact-title">一緒に、何か作りませんか？</h2>
+          <h2 class="contact-title">仲間として、一緒に動こう。</h2>
           <p class="contact-desc">
-            Liber Inc. では、クリエイティブ制作・SNS運用・LP制作など幅広いご依頼に対応しています。
+            クリエイティブ制作・SNS運用・LP制作など、幅広いご依頼に対応しています。
             まずはお気軽にご相談ください。
           </p>
           <a href="mailto:contact@liber-inc.com" class="contact-btn">
@@ -163,64 +162,79 @@ const { company, departments, stats } = siteData;
   /* Hero */
   .hero {
     position: relative;
-    padding: 100px 0 80px;
+    padding: 120px 0 100px;
     overflow: hidden;
+    background: #080d1a;
   }
 
   .hero .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 24px;
   }
 
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
     pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 14px;
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--color-primary);
+    padding: 5px 16px;
+    background: rgba(212, 175, 55, 0.12);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.25);
     border-radius: 100px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: #ffffff;
   }
 
   .hero-description {
-    max-width: 640px;
+    max-width: 560px;
     font-size: 1rem;
-    color: var(--color-text-muted);
-    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.9;
   }
 
   .hero-stats {
     display: flex;
-    gap: 40px;
-    padding: 24px 40px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    gap: 0;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
     margin-top: 8px;
+    overflow: hidden;
   }
 
   .stat {
@@ -228,38 +242,46 @@ const { company, departments, stats } = siteData;
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    padding: 20px 36px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stat:last-child {
+    border-right: none;
   }
 
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: #d4af37;
     letter-spacing: -0.02em;
   }
 
   .stat-label {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
     font-weight: 500;
+    white-space: nowrap;
   }
 
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 12px 24px;
-    background: var(--color-primary);
-    color: white;
+    gap: 8px;
+    padding: 13px 28px;
+    background: #d4af37;
+    color: #080d1a;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95rem;
     transition: background 0.15s, transform 0.15s;
     margin-top: 4px;
+    letter-spacing: 0.01em;
   }
 
   .cta-btn:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-1px);
+    background: #e8c84a;
+    transform: translateY(-2px);
   }
 
   /* Sections */

@@ -61,6 +61,6 @@
   "stats": [
     { "label": "部門数", "value": "4" },
     { "label": "対応領域", "value": "Sales〜Production" },
-    { "label": "AI活用", "value": "Claude / GPT Image 2" }
+    { "label": "AI活用", "value": "Claude / ChatGPT" }
   ]
 }

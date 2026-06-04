@@ -16,6 +16,14 @@ const { company, departments, stats } = siteData;
     <section class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-noise" aria-hidden="true"></div>
+      <!-- Floating shapes -->
+      <div class="shape shape-circle-lg" aria-hidden="true"></div>
+      <div class="shape shape-circle-md" aria-hidden="true"></div>
+      <div class="shape shape-circle-sm" aria-hidden="true"></div>
+      <div class="shape shape-ring" aria-hidden="true"></div>
+      <div class="shape shape-diamond" aria-hidden="true"></div>
+      <div class="shape shape-line-1" aria-hidden="true"></div>
+      <div class="shape shape-line-2" aria-hidden="true"></div>
       <div class="container">
         <div class="hero-badge">Liber Inc. — Company Overview</div>
         <h1 class="hero-title">{company.tagline}</h1>
@@ -168,6 +176,27 @@ const { company, departments, stats } = siteData;
   <Footer />
 </Layout>
 
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = el.dataset.delay ?? '0';
+          setTimeout(() => el.classList.add('visible'), parseInt(delay));
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('[data-animate]').forEach((el, i) => {
+    (el as HTMLElement).dataset.delay = String(i * 100);
+    observer.observe(el);
+  });
+</script>
+
 <style>
   .container {
     max-width: 1100px;
@@ -212,6 +241,68 @@ const { company, departments, stats } = siteData;
     pointer-events: none;
     z-index: 1;
     opacity: 0.4;
+  }
+
+  /* Floating shapes */
+  .shape {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes float-slow   { 0%,100% { transform: translateY(0) rotate(0deg); }   50% { transform: translateY(-18px) rotate(5deg); } }
+  @keyframes float-med    { 0%,100% { transform: translateY(0) rotate(0deg); }   50% { transform: translateY(-12px) rotate(-8deg); } }
+  @keyframes spin-slow    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes pulse-shape  { 0%,100% { opacity: 0.12; transform: scale(1); }      50% { opacity: 0.22; transform: scale(1.08); } }
+
+  .shape-circle-lg {
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    top: -80px; right: -60px;
+    animation: float-slow 8s ease-in-out infinite;
+  }
+  .shape-circle-md {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.15);
+    bottom: 40px; left: 5%;
+    animation: float-med 6s ease-in-out infinite 1s;
+  }
+  .shape-circle-sm {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(212,175,55,0.12);
+    top: 15%; right: 18%;
+    animation: pulse-shape 4s ease-in-out infinite;
+  }
+  .shape-ring {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 2px solid rgba(212,175,55,0.1);
+    bottom: -40px; right: 12%;
+    animation: spin-slow 20s linear infinite;
+  }
+  .shape-diamond {
+    width: 28px; height: 28px;
+    background: rgba(212,175,55,0.25);
+    transform: rotate(45deg);
+    top: 30%; left: 8%;
+    animation: float-med 5s ease-in-out infinite 2s;
+  }
+  .shape-line-1 {
+    width: 120px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    top: 25%; right: 8%;
+    animation: float-slow 7s ease-in-out infinite 0.5s;
+  }
+  .shape-line-2 {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+    top: 60%; left: 12%;
+    transform: rotate(-30deg);
+    animation: float-med 6s ease-in-out infinite 3s;
   }
 
   .hero-badge {

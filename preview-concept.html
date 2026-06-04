@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liber Inc. — Design Concept v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter','Noto Sans JP',sans-serif; background:#fff; color:#0f172a; }
+a { text-decoration:none; }
+
+/* ─── HEADER ─── */
+.header {
+  position:sticky; top:0; z-index:100;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(59,130,246,0.1);
+  padding:0 32px;
+}
+.header-inner {
+  max-width:1100px; margin:0 auto;
+  height:64px; display:flex; align-items:center; justify-content:space-between;
+}
+.logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.05rem; color:#1e3a8a; }
+.logo-mark {
+  width:32px; height:32px; border-radius:8px;
+  background:linear-gradient(135deg,#3b82f6,#1d4ed8);
+  color:white; display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:.95rem;
+}
+.nav { display:flex; gap:4px; }
+.nav a {
+  padding:6px 14px; font-size:.88rem; font-weight:500;
+  color:#64748b; border-radius:8px; transition:.15s;
+}
+.nav a:hover { background:#eff6ff; color:#1e40af; }
+
+/* ─── SECTION 1: HERO ─── */
+.s1 {
+  position:relative; overflow:hidden;
+  min-height:100vh;
+  background:linear-gradient(160deg, #0ea5e9 0%, #38bdf8 30%, #7dd3fc 60%, #e0f2fe 85%, #f0f9ff 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:100px 24px 80px; text-align:center;
+}
+/* Big soft blob shapes */
+.blob { position:absolute; border-radius:50%; pointer-events:none; }
+.blob-1 { width:700px; height:700px; background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); top:-200px; left:-150px; }
+.blob-2 { width:500px; height:500px; background:radial-gradient(circle, rgba(14,165,233,0.25) 0%, transparent 70%); bottom:-100px; right:-100px; }
+.blob-3 { width:300px; height:300px; background:radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%); top:10%; right:10%; animation:floatY 7s ease-in-out infinite; }
+.blob-4 { width:180px; height:180px; background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.5); bottom:20%; left:8%; animation:floatY 5s ease-in-out infinite 1.5s; }
+/* Wave bottom */
+.wave {
+  position:absolute; bottom:-2px; left:0; right:0; height:120px;
+  background:white;
+  clip-path:ellipse(55% 60% at 50% 100%);
+}
+/* Floating circles outline */
+.fc { position:absolute; border-radius:50%; border:2px solid rgba(255,255,255,0.5); pointer-events:none; }
+.fc-1 { width:120px; height:120px; top:12%; left:6%; animation:spin 20s linear infinite; }
+.fc-2 { width:60px;  height:60px;  top:20%; right:8%; animation:floatY 4s ease-in-out infinite; }
+.fc-3 { width:200px; height:200px; bottom:18%; right:5%; border-style:dashed; border-color:rgba(255,255,255,0.35); animation:spin 30s linear infinite reverse; }
+/* Small dots scattered */
+.dot-s { position:absolute; border-radius:50%; background:rgba(255,255,255,0.7); pointer-events:none; }
+.dot-s1 { width:10px; height:10px; top:25%;  left:18%; animation:pulse-d 3s ease-in-out infinite; }
+.dot-s2 { width:6px;  height:6px;  top:40%;  right:15%; animation:pulse-d 3s ease-in-out infinite .8s; }
+.dot-s3 { width:14px; height:14px; bottom:35%; left:10%; animation:pulse-d 3s ease-in-out infinite 1.5s; }
+.dot-s4 { width:8px;  height:8px;  top:15%;  right:25%; animation:pulse-d 3s ease-in-out infinite 2s; }
+/* Diamond */
+.diamond { position:absolute; width:20px; height:20px; background:rgba(255,255,255,0.6); transform:rotate(45deg); top:55%; left:20%; animation:floatY 6s ease-in-out infinite 1s; }
+
+/* Hero content */
+.hero-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:22px; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 18px;
+  background:rgba(255,255,255,0.35);
+  border:1px solid rgba(255,255,255,0.6);
+  border-radius:100px; backdrop-filter:blur(8px);
+  font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:white;
+  text-shadow:0 1px 4px rgba(0,0,0,0.2);
+}
+.badge-dot { width:6px; height:6px; border-radius:50%; background:white; }
+.hero-title {
+  font-size:clamp(2.6rem,6vw,5rem);
+  font-weight:900; letter-spacing:-.03em; line-height:1.05;
+  color:white;
+  text-shadow:
+    0 2px 8px rgba(0,60,120,0.4),
+    0 4px 24px rgba(0,40,100,0.3),
+    0 8px 48px rgba(0,20,80,0.2);
+}
+.hero-title .line2 { display:block; color:rgba(255,255,255,0.95); }
+.hero-desc {
+  max-width:680px; font-size:1.05rem;
+  color:rgba(255,255,255,0.95); line-height:1.9;
+  text-shadow:0 1px 6px rgba(0,40,100,0.35);
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(8px);
+  padding:16px 24px; border-radius:12px;
+  border:1px solid rgba(255,255,255,0.25);
+}
+.hero-tags { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.hero-tag {
+  padding:7px 18px;
+  background:rgba(255,255,255,0.92); border:none;
+  border-radius:100px;
+  font-size:.8rem; font-weight:700; color:#1e40af;
+  box-shadow:0 2px 12px rgba(0,0,0,0.12);
+}
+.hero-stats {
+  display:flex; gap:0;
+  background:rgba(255,255,255,0.92); border:none;
+  border-radius:14px; overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,0.12);
+}
+.stat { padding:18px 32px; border-right:1px solid rgba(0,0,0,0.07); }
+.stat:last-child { border-right:none; }
+.stat-v { font-size:1.4rem; font-weight:800; color:#1e40af; display:block; }
+.stat-l { font-size:.72rem; color:#64748b; display:block; margin-top:2px; white-space:nowrap; }
+.hero-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 32px;
+  background:#1e40af; color:white;
+  border-radius:12px; font-weight:800; font-size:.95rem;
+  box-shadow:0 8px 32px rgba(30,64,175,0.4);
+  transition:.2s;
+}
+.hero-btn:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(30,64,175,0.5); }
+.hero-sub-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:14px 32px;
+  background:rgba(255,255,255,0.92); color:#1e40af;
+  border:none;
+  border-radius:12px; font-weight:700; font-size:.95rem;
+  box-shadow:0 4px 16px rgba(0,0,0,0.1);
+  backdrop-filter:blur(8px);
+}
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+
+/* ─── SECTION 2: DEPARTMENTS ─── */
+.s2 {
+  background:#ffffff;
+  position:relative; overflow:hidden; padding:100px 24px;
+}
+.s2::before {
+  content:''; position:absolute;
+  width:600px; height:600px; border-radius:50%;
+  background:radial-gradient(circle, rgba(224,242,254,0.8) 0%, transparent 70%);
+  top:-200px; right:-150px; pointer-events:none;
+}
+.s2::after {
+  content:''; position:absolute;
+  width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(circle, rgba(219,234,254,0.6) 0%, transparent 70%);
+  bottom:-100px; left:-100px; pointer-events:none;
+}
+/* Background dots */
+.s2-dots {
+  position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(circle, rgba(59,130,246,0.08) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+.s2-content { position:relative; z-index:2; max-width:1100px; margin:0 auto; }
+.sec-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:#3b82f6; margin-bottom:12px;
+}
+.sec-line { width:24px; height:2px; background:#3b82f6; border-radius:2px; }
+.sec-title { font-size:2.4rem; font-weight:800; letter-spacing:-.03em; color:#0f172a; margin-bottom:12px; }
+.sec-sub { font-size:.95rem; color:#64748b; line-height:1.8; max-width:560px; margin-bottom:48px; }
+.cards { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.card {
+  background:white; border:1px solid #e2e8f0;
+  border-radius:20px; overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,0.06);
+  transition:.25s;
+}
+.card:hover { box-shadow:0 12px 48px rgba(59,130,246,0.15); transform:translateY(-4px); border-color:rgba(59,130,246,0.3); }
+.card-illust { height:140px; position:relative; overflow:hidden; }
+.ci-sales      { background:linear-gradient(135deg,#1e3a5f,#2563eb); }
+.ci-marketing  { background:linear-gradient(135deg,#2d1b69,#7c3aed); }
+.ci-production { background:linear-gradient(135deg,#064e3b,#059669); }
+.ci-knowledge  { background:linear-gradient(135deg,#78350f,#d97706); }
+/* SVG illust inside card */
+.ci-svg { position:absolute; inset:0; opacity:.9; }
+.ci-svg svg { width:100%; height:100%; }
+.ci-label { position:absolute; bottom:14px; left:18px; }
+.ci-en { font-size:1.1rem; font-weight:800; color:white; display:block; line-height:1; }
+.ci-ja { font-size:.68rem; color:rgba(255,255,255,0.6); display:block; margin-top:3px; }
+.card-body { padding:20px 22px 24px; }
+.card-desc { font-size:.875rem; color:#475569; line-height:1.8; margin-bottom:16px; }
+.card-tags { display:flex; flex-direction:column; gap:8px; }
+.card-tag-item { display:flex; align-items:center; gap:10px; font-size:.82rem; color:#1e293b; font-weight:500; }
+.ctag-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+
+/* ─── SECTION 3: STRUCTURE ─── */
+.s3 {
+  background:linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+  position:relative; overflow:hidden; padding:100px 24px;
+}
+/* Decorative circles */
+.s3-circle-1 { position:absolute; width:500px; height:500px; border-radius:50%; border:1px solid rgba(59,130,246,0.1); top:50%; left:50%; transform:translate(-50%,-50%); }
+.s3-circle-2 { position:absolute; width:700px; height:700px; border-radius:50%; border:1px solid rgba(59,130,246,0.07); top:50%; left:50%; transform:translate(-50%,-50%); stroke-dasharray:8 6; }
+.s3-blob { position:absolute; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(186,230,255,0.5) 0%, transparent 70%); top:10%; right:5%; }
+.s3-content { position:relative; z-index:2; max-width:1100px; margin:0 auto; }
+.crew-wrap { display:flex; align-items:center; justify-content:center; margin:48px 0; }
+.crew-map {
+  position:relative; width:440px; height:440px;
+}
+.crew-center {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  display:flex; align-items:center; justify-content:center;
+}
+.crew-pulse {
+  position:absolute; width:110px; height:110px; border-radius:50%;
+  background:rgba(59,130,246,0.1); animation:pulse-r 2.5s ease-out infinite;
+}
+.crew-hub {
+  position:relative; width:88px; height:88px; border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#1d4ed8);
+  box-shadow:0 8px 40px rgba(59,130,246,0.4);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.crew-hub .cl { font-size:1.5rem; font-weight:900; color:white; line-height:1; }
+.crew-hub .cn { font-size:.42rem; color:rgba(255,255,255,0.75); letter-spacing:.05em; white-space:nowrap; }
+.crew-node {
+  position:absolute; width:116px;
+  background:white; border-radius:16px; padding:16px 12px;
+  box-shadow:0 4px 24px rgba(0,0,0,0.08); text-align:center;
+  border:1px solid rgba(59,130,246,0.12);
+  transition:.2s;
+}
+.crew-node:hover { box-shadow:0 8px 32px rgba(59,130,246,0.2); transform:scale(1.05); }
+.cn-tl { top:16px;    left:16px;    animation:floatY 4s ease-in-out infinite; }
+.cn-tr { top:16px;    right:16px;   animation:floatY 4s ease-in-out infinite .8s; }
+.cn-bl { bottom:16px; left:16px;    animation:floatY 4s ease-in-out infinite 1.6s; }
+.cn-br { bottom:16px; right:16px;   animation:floatY 4s ease-in-out infinite 2.4s; }
+.cn-icon { width:36px; height:36px; border-radius:10px; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; }
+.cn-name { font-size:.82rem; font-weight:700; color:#0f172a; }
+.cn-sub  { font-size:.65rem; color:#94a3b8; margin-top:2px; }
+/* SVG lines */
+.crew-lines { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+/* Tools grid */
+.tools-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:24px; }
+.tool-card {
+  background:white; border:1px solid rgba(59,130,246,0.12);
+  border-radius:14px; padding:16px 14px;
+  display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);
+}
+.tool-badge { padding:3px 10px; border-radius:100px; font-size:.65rem; font-weight:700; }
+.tool-badge.ai   { background:#eff6ff; color:#3b82f6; }
+.tool-badge.tool { background:#f0fdf4; color:#16a34a; }
+.tool-name { font-size:.8rem; font-weight:700; color:#1e293b; }
+.tool-desc { font-size:.7rem; color:#94a3b8; line-height:1.5; }
+
+/* ─── SECTION 4: CONTACT ─── */
+.s4 {
+  background:linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #3b82f6 100%);
+  position:relative; overflow:hidden; padding:100px 24px;
+}
+.s4::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 60% at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  pointer-events:none;
+}
+/* Background decorative shapes */
+.s4-ring1 { position:absolute; width:500px; height:500px; border-radius:50%; border:1px solid rgba(255,255,255,0.08); top:-150px; right:-100px; }
+.s4-ring2 { position:absolute; width:300px; height:300px; border-radius:50%; border:1px solid rgba(255,255,255,0.06); bottom:-80px; left:-60px; }
+.s4-ring3 { position:absolute; width:200px; height:200px; border-radius:50%; border:1px solid rgba(255,255,255,0.1); top:10%; left:20%; animation:spin 25s linear infinite; }
+.s4-dot1 { position:absolute; width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,0.2); top:20%; right:15%; animation:pulse-d 3s ease-in-out infinite; }
+.s4-dot2 { position:absolute; width:8px;  height:8px;  border-radius:50%; background:rgba(255,255,255,0.15); bottom:25%; left:12%; animation:pulse-d 3s ease-in-out infinite 1s; }
+.s4-content { position:relative; z-index:2; max-width:700px; margin:0 auto; text-align:center; }
+.contact-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:16px; }
+.contact-title { font-size:2.4rem; font-weight:800; letter-spacing:-.03em; color:white; margin-bottom:16px; }
+.contact-desc { font-size:.95rem; color:rgba(255,255,255,0.75); line-height:1.9; margin-bottom:40px; }
+.contact-features { display:flex; justify-content:center; gap:24px; margin-bottom:40px; flex-wrap:wrap; }
+.cf-item { display:flex; align-items:center; gap:8px; font-size:.85rem; color:rgba(255,255,255,0.8); font-weight:500; }
+.cf-check { width:18px; height:18px; border-radius:50%; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:.65rem; color:white; }
+.contact-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.btn-primary { display:inline-flex; align-items:center; gap:8px; padding:14px 32px; background:white; color:#1e40af; border-radius:12px; font-weight:800; font-size:.95rem; box-shadow:0 8px 32px rgba(0,0,0,0.2); }
+.btn-secondary { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3); border-radius:12px; font-weight:600; font-size:.95rem; backdrop-filter:blur(8px); }
+
+/* ─── FOOTER ─── */
+.footer { background:#0f172a; color:white; padding:48px 32px 24px; }
+.footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-start; padding-bottom:32px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.footer-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1rem; margin-bottom:8px; }
+.footer-logo .lm { width:28px; height:28px; border-radius:7px; background:linear-gradient(135deg,#3b82f6,#1d4ed8); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.85rem; }
+.footer-tagline { font-size:.8rem; color:rgba(255,255,255,0.4); padding-left:38px; }
+.footer-links { display:flex; gap:24px; }
+.footer-links a { font-size:.85rem; color:rgba(255,255,255,0.5); transition:.15s; }
+.footer-links a:hover { color:white; }
+.footer-bottom { max-width:1100px; margin:0 auto; padding-top:20px; font-size:.78rem; color:rgba(255,255,255,0.3); }
+
+/* Divider */
+.div-wave { width:100%; height:60px; background:white; clip-path:ellipse(55% 100% at 50% 0%); margin-top:-30px; }
+.div-wave-rev { width:100%; height:60px; background:#f0f9ff; clip-path:ellipse(55% 100% at 50% 100%); margin-bottom:-2px; }
+
+/* Animations */
+@keyframes floatY   { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-10px)} }
+@keyframes spin     { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes pulse-d  { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.3)} }
+@keyframes pulse-r  { 0%{transform:scale(.85);opacity:.8} 100%{transform:scale(1.5);opacity:0} }
+@keyframes dash-mv  { to{stroke-dashoffset:-20} }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">L</div>
+      Liber Inc.
+    </div>
+    <nav class="nav">
+      <a href="#">部門紹介</a>
+      <a href="#">運営体制</a>
+      <a href="#">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="s1">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="fc fc-1"></div>
+  <div class="fc fc-2"></div>
+  <div class="fc fc-3"></div>
+  <div class="dot-s dot-s1"></div>
+  <div class="dot-s dot-s2"></div>
+  <div class="dot-s dot-s3"></div>
+  <div class="dot-s dot-s4"></div>
+  <div class="diamond"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span>Liber Inc. — Company Overview</div>
+    <h1 class="hero-title">
+      Our Crew.<br>
+      <span class="line2">Our Value. Our Freedom.</span>
+    </h1>
+    <p class="hero-desc">仲間と共にコンテンツを創り、自由に価値を届けるフリーランスチーム。<br>4つの部門が連携し、自社ブランドからクライアントワークまで<br>一気通貫で動く。</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Sales</span>
+      <span class="hero-tag">Marketing</span>
+      <span class="hero-tag">Production</span>
+      <span class="hero-tag">Knowledge</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-v">4</span><span class="stat-l">部門数</span></div>
+      <div class="stat"><span class="stat-v">Sales〜Pro</span><span class="stat-l">対応領域</span></div>
+      <div class="stat"><span class="stat-v">Claude / ChatGPT</span><span class="stat-l">AI活用</span></div>
+    </div>
+    <div class="hero-btns">
+      <div class="hero-btn">Explore Our Crew →</div>
+      <div class="hero-sub-btn">お問い合わせ</div>
+    </div>
+  </div>
+  <div class="wave"></div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section class="s2">
+  <div class="s2-dots"></div>
+  <div class="s2-content">
+    <div class="sec-eyebrow"><span class="sec-line"></span>Departments</div>
+    <h2 class="sec-title">部門紹介</h2>
+    <p class="sec-sub">仲間のように連携する4つの部門。それぞれが専門性を持ちながら、自由に価値を創り続けます。</p>
+    <div class="cards">
+
+      <!-- SALES -->
+      <div class="card">
+        <div class="card-illust ci-sales">
+          <div class="ci-svg">
+            <svg viewBox="0 0 480 140" fill="none">
+              <circle cx="160" cy="70" r="88" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+              <circle cx="260" cy="70" r="88" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+              <polyline points="50,110 140,85 230,55 330,25" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="140" cy="85" r="5" fill="white" opacity="0.85"/>
+              <circle cx="230" cy="55" r="5" fill="white" opacity="0.85"/>
+              <circle cx="330" cy="25" r="6" fill="white" opacity="0.9"/>
+              <polygon points="330,17 338,28 322,28" fill="rgba(255,255,255,0.8)"/>
+              <circle cx="420" cy="100" r="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <circle cx="38"  cy="35"  r="8"  fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <circle cx="430" cy="45"  r="4"  fill="rgba(255,255,255,0.25)"/>
+            </svg>
+          </div>
+          <div class="ci-label"><span class="ci-en">Sales</span><span class="ci-ja">営業</span></div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">クライアントとの最初の接点を担う部門。提案書・見積書・契約書の作成から、商談のサポートまで一手に引き受けます。</p>
+          <div class="card-tags">
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#3b82f6"></span>提案書・見積書の作成</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#3b82f6"></span>契約関連資料の管理</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#3b82f6"></span>クライアント折衝・商談サポート</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKETING -->
+      <div class="card">
+        <div class="card-illust ci-marketing">
+          <div class="ci-svg">
+            <svg viewBox="0 0 480 140" fill="none">
+              <circle cx="180" cy="70" r="28" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+              <circle cx="180" cy="70" r="64" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-dasharray="7 4"/>
+              <circle cx="180" cy="70" r="104" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="7 4"/>
+              <circle cx="180" cy="70" r="12" fill="white" opacity="0.95"/>
+              <path d="M264 40 Q340 25 400 44" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M264 70 Q320 70 384 70"  stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M264 100 Q340 115 400 96" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <circle cx="400" cy="44" r="5" fill="rgba(255,255,255,0.8)"/>
+              <circle cx="384" cy="70" r="5" fill="rgba(255,255,255,0.8)"/>
+              <circle cx="400" cy="96" r="5" fill="rgba(255,255,255,0.8)"/>
+              <circle cx="430" cy="25"  r="4" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="440" cy="115" r="3" fill="rgba(255,255,255,0.25)"/>
+            </svg>
+          </div>
+          <div class="ci-label"><span class="ci-en">Marketing</span><span class="ci-ja">マーケティング</span></div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">Liber Inc. の顔となるSNSを運用する部門。代表のリアルな日常や思想を発信しながら、様々なコンセプトで自社ブランドを育てる。</p>
+          <div class="card-tags">
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#8b5cf6"></span>自社SNSアカウントの企画・運用</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#8b5cf6"></span>代表のリアルを届けるコンテンツ制作</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#8b5cf6"></span>Instagram Reels 企画・プロット作成</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCTION -->
+      <div class="card">
+        <div class="card-illust ci-production">
+          <div class="ci-svg">
+            <svg viewBox="0 0 480 140" fill="none">
+              <rect x="210" y="95" width="190" height="30" rx="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <rect x="190" y="65" width="190" height="30" rx="5" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+              <rect x="170" y="35" width="190" height="30" rx="5" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.5)"  stroke-width="1.5"/>
+              <rect x="150" y="5"  width="190" height="30" rx="5" fill="rgba(255,255,255,0.18)" stroke="white"                  stroke-width="2"/>
+              <line x1="56" y1="132" x2="124" y2="8" stroke="rgba(255,255,255,0.55)" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="124,8 133,2 129,15" fill="rgba(255,255,255,0.8)"/>
+              <circle cx="56"  cy="132" r="5"  fill="rgba(255,255,255,0.4)"/>
+              <circle cx="420" cy="120" r="5"  fill="rgba(255,255,255,0.25)"/>
+              <circle cx="40"  cy="60"  r="10" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <circle cx="440" cy="25"  r="4"  fill="rgba(255,255,255,0.2)"/>
+            </svg>
+          </div>
+          <div class="ci-label"><span class="ci-en">Production</span><span class="ci-ja">制作</span></div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">クライアントから受託したコンテンツ制作を担当。バナー・LP・広告クリエイティブ・Web制作まで、幅広い制作物に対応します。</p>
+          <div class="card-tags">
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#10b981"></span>バナー・広告クリエイティブ制作</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#10b981"></span>LP（ランディングページ）制作</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#10b981"></span>Web・SNSコンテンツ制作</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KNOWLEDGE -->
+      <div class="card">
+        <div class="card-illust ci-knowledge">
+          <div class="ci-svg">
+            <svg viewBox="0 0 480 140" fill="none">
+              <circle cx="240" cy="70" r="16" fill="rgba(255,255,255,0.18)" stroke="white" stroke-width="2.5"/>
+              <circle cx="110" cy="28" r="11" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+              <circle cx="376" cy="28" r="11" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+              <circle cx="64"  cy="105" r="9"  fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+              <circle cx="416" cy="102" r="9"  fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+              <circle cx="240" cy="125" r="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+              <line x1="240" y1="54"  x2="116" y2="35"  stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <line x1="240" y1="54"  x2="368" y2="35"  stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <line x1="228" y1="84"  x2="72"  y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <line x1="252" y1="84"  x2="409" y2="99"  stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <line x1="240" y1="86"  x2="240" y2="115" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <circle cx="320" cy="115" r="4" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="40"  cy="58"  r="3" fill="rgba(255,255,255,0.25)"/>
+              <circle cx="440" cy="65"  r="4" fill="rgba(255,255,255,0.2)"/>
+            </svg>
+          </div>
+          <div class="ci-label"><span class="ci-en">Knowledge</span><span class="ci-ja">ナレッジ</span></div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">全部門共通の知見・ノウハウを蓄積・共有するハブ。各領域で得た学びを体系化し、チーム全体のレベルアップを支えます。</p>
+          <div class="card-tags">
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#f59e0b"></span>各領域のナレッジ・ノウハウ管理</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#f59e0b"></span>ユーザー情報・リサーチデータの整理</div>
+            <div class="card-tag-item"><span class="ctag-dot" style="background:#f59e0b"></span>GPTsやAIツールの活用ガイド</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="s3">
+  <div class="s3-circle-1"></div>
+  <div class="s3-blob"></div>
+  <div class="s3-content">
+    <div class="sec-eyebrow"><span class="sec-line"></span>Structure</div>
+    <h2 class="sec-title">運営体制</h2>
+    <p class="sec-sub">自社ブランドを育てながら、クライアントワークも仲間と連携して動く。それがLiber Inc. のスタイル</p>
+    <div class="crew-wrap">
+      <div class="crew-map">
+        <svg class="crew-lines" viewBox="0 0 440 440" fill="none">
+          <line x1="220" y1="220" x2="76"  y2="76"  stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash-mv 2s linear infinite"/>
+          <line x1="220" y1="220" x2="364" y2="76"  stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash-mv 2s linear infinite .3s"/>
+          <line x1="220" y1="220" x2="76"  y2="364" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash-mv 2s linear infinite .6s"/>
+          <line x1="220" y1="220" x2="364" y2="364" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 4" style="animation:dash-mv 2s linear infinite .9s"/>
+          <line x1="76" y1="76" x2="364" y2="76"   stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+          <line x1="76" y1="364" x2="364" y2="364" stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+          <line x1="76" y1="76" x2="76"  y2="364"  stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+          <line x1="364" y1="76" x2="364" y2="364" stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+        </svg>
+        <div class="crew-center">
+          <div class="crew-pulse"></div>
+          <div class="crew-hub"><span class="cl">L</span><span class="cn">Liber Inc.</span></div>
+        </div>
+        <div class="crew-node cn-tl">
+          <div class="cn-icon" style="background:#eff6ff;color:#3b82f6">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="cn-name">Sales</div><div class="cn-sub">営業</div>
+        </div>
+        <div class="crew-node cn-tr">
+          <div class="cn-icon" style="background:#f5f3ff;color:#8b5cf6">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg>
+          </div>
+          <div class="cn-name">Marketing</div><div class="cn-sub">マーケ</div>
+        </div>
+        <div class="crew-node cn-bl">
+          <div class="cn-icon" style="background:#fffbeb;color:#f59e0b">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          </div>
+          <div class="cn-name">Knowledge</div><div class="cn-sub">ナレッジ</div>
+        </div>
+        <div class="crew-node cn-br">
+          <div class="cn-icon" style="background:#ecfdf5;color:#10b981">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div class="cn-name">Production</div><div class="cn-sub">制作</div>
+        </div>
+      </div>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card"><span class="tool-badge ai">AI</span><span class="tool-name">Claude</span><span class="tool-desc">業務自動化・コンテンツ生成・戦略立案</span></div>
+      <div class="tool-card"><span class="tool-badge ai">AI</span><span class="tool-name">ChatGPT</span><span class="tool-desc">バナー・LP・画像生成</span></div>
+      <div class="tool-card"><span class="tool-badge tool">Tool</span><span class="tool-name">Notion</span><span class="tool-desc">タスク・目標管理・ナレッジ</span></div>
+      <div class="tool-card"><span class="tool-badge tool">Tool</span><span class="tool-name">Google Workspace</span><span class="tool-desc">スプレッドシート・ドキュメント</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="s4">
+  <div class="s4-ring1"></div>
+  <div class="s4-ring2"></div>
+  <div class="s4-ring3"></div>
+  <div class="s4-dot1"></div>
+  <div class="s4-dot2"></div>
+  <div class="s4-content">
+    <div class="contact-eyebrow">Contact Us</div>
+    <h2 class="contact-title">仲間として、一緒に動こう。</h2>
+    <p class="contact-desc">クリエイティブ制作・SNS運用・LP制作など、幅広いご依頼に対応しています。<br>まずはお気軽にご相談ください。</p>
+    <div class="contact-features">
+      <div class="cf-item"><div class="cf-check">✓</div>バナー・LP制作</div>
+      <div class="cf-item"><div class="cf-check">✓</div>SNS運用・コンテンツ</div>
+      <div class="cf-item"><div class="cf-check">✓</div>広告クリエイティブ</div>
+    </div>
+    <div class="contact-btns">
+      <div class="btn-primary">お問い合わせ →</div>
+      <div class="btn-secondary">部門を見る</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><div class="lm">L</div>Liber Inc.</div>
+      <div class="footer-tagline">仲間と共にコンテンツを創り、自由に価値を届ける</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">部門紹介</a>
+      <a href="#">運営体制</a>
+      <a href="#">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Liber Inc. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

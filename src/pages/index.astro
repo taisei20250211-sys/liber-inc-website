@@ -14,20 +14,35 @@ const { company, departments, stats } = siteData;
   <main>
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-noise" aria-hidden="true"></div>
-      <!-- Floating shapes -->
-      <div class="shape shape-circle-lg" aria-hidden="true"></div>
-      <div class="shape shape-circle-md" aria-hidden="true"></div>
-      <div class="shape shape-circle-sm" aria-hidden="true"></div>
-      <div class="shape shape-ring" aria-hidden="true"></div>
-      <div class="shape shape-diamond" aria-hidden="true"></div>
-      <div class="shape shape-line-1" aria-hidden="true"></div>
-      <div class="shape shape-line-2" aria-hidden="true"></div>
-      <div class="container">
-        <div class="hero-badge">Liber Inc. — Company Overview</div>
+      <!-- Blobs -->
+      <div class="blob blob-1" aria-hidden="true"></div>
+      <div class="blob blob-2" aria-hidden="true"></div>
+      <div class="blob blob-3" aria-hidden="true"></div>
+      <div class="blob blob-4" aria-hidden="true"></div>
+      <!-- Floating circles -->
+      <div class="fc fc-1" aria-hidden="true"></div>
+      <div class="fc fc-2" aria-hidden="true"></div>
+      <div class="fc fc-3" aria-hidden="true"></div>
+      <!-- Dots -->
+      <div class="dot-s dot-s1" aria-hidden="true"></div>
+      <div class="dot-s dot-s2" aria-hidden="true"></div>
+      <div class="dot-s dot-s3" aria-hidden="true"></div>
+      <div class="dot-s dot-s4" aria-hidden="true"></div>
+      <!-- Diamond -->
+      <div class="diamond" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Liber Inc. — Company Overview
+        </div>
         <h1 class="hero-title">{company.tagline}</h1>
-        <p class="hero-description">{company.description}</p>
+        <p class="hero-description">{company.description}<br>4つの部門が連携し、自社ブランドからクライアントワークまで<br>一気通貫で動く。</p>
+        <div class="hero-tags">
+          {departments.map((d) => (
+            <span class="hero-tag">{d.name}</span>
+          ))}
+        </div>
         <div class="hero-stats">
           {stats.map((stat) => (
             <div class="stat">
@@ -36,21 +51,27 @@ const { company, departments, stats } = siteData;
             </div>
           ))}
         </div>
-        <a href="#departments" class="cta-btn">
-          Explore Our Crew
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 9 6 6 6-6"/>
-          </svg>
-        </a>
+        <div class="hero-btns">
+          <a href="#departments" class="btn-primary">
+            Explore Our Crew
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <a href="#contact" class="btn-secondary">お問い合わせ</a>
+        </div>
       </div>
+      <div class="hero-wave" aria-hidden="true"></div>
     </section>
 
     <!-- Departments -->
-    <section id="departments" class="section">
-      <div class="container">
+    <section id="departments" class="section s-departments">
+      <div class="s-blob sb-1" aria-hidden="true"></div>
+      <div class="s-blob sb-2" aria-hidden="true"></div>
+      <div class="s-dots" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2">
         <div class="section-header">
+          <div class="sec-eyebrow"><span class="sec-line"></span>Departments</div>
           <h2 class="section-title">部門紹介</h2>
-          <p class="section-subtitle">仲間のように連携する4つの部門。それぞれが専門性を持ちながら、自由に価値を創り続けます</p>
+          <p class="section-subtitle">仲間のように連携する4つの部門。それぞれが専門性を持ちながら、自由に価値を創り続けます。</p>
         </div>
         <div class="departments-grid">
           {departments.map((dept) => (
@@ -61,89 +82,74 @@ const { company, departments, stats } = siteData;
     </section>
 
     <!-- Structure -->
-    <section id="structure" class="section section-alt">
-      <div class="container">
+    <section id="structure" class="section s-structure">
+      <div class="s3-circle-1" aria-hidden="true"></div>
+      <div class="s3-circle-2" aria-hidden="true"></div>
+      <div class="s3-blob-r" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2">
         <div class="section-header">
+          <div class="sec-eyebrow"><span class="sec-line"></span>Structure</div>
           <h2 class="section-title">運営体制</h2>
           <p class="section-subtitle">自社ブランドを育てながら、クライアントワークも仲間と連携して動く。それがLiber Inc. のスタイル</p>
         </div>
 
-        <!-- Crew Map -->
-        <div class="crew-map">
-          <!-- SVG connecting lines -->
-          <svg class="crew-lines" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="250" y1="250" x2="110" y2="110" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate"/>
-            <line x1="250" y1="250" x2="390" y2="110" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate" style="animation-delay: 0.3s"/>
-            <line x1="250" y1="250" x2="110" y2="390" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate" style="animation-delay: 0.6s"/>
-            <line x1="250" y1="250" x2="390" y2="390" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate" style="animation-delay: 0.9s"/>
-            <line x1="110" y1="110" x2="390" y2="110" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 6" opacity="0.6"/>
-            <line x1="110" y1="390" x2="390" y2="390" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 6" opacity="0.6"/>
-            <line x1="110" y1="110" x2="110" y2="390" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 6" opacity="0.6"/>
-            <line x1="390" y1="110" x2="390" y2="390" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 6" opacity="0.6"/>
-          </svg>
-
-          <!-- Center hub -->
-          <div class="crew-center">
-            <div class="crew-center-pulse"></div>
-            <div class="crew-center-inner">
-              <span class="crew-center-logo">L</span>
-              <span class="crew-center-name">Liber Inc.</span>
+        <div class="crew-wrap">
+          <div class="crew-map">
+            <svg class="crew-lines" viewBox="0 0 440 440" fill="none">
+              <line x1="220" y1="220" x2="76"  y2="76"  stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate"/>
+              <line x1="220" y1="220" x2="364" y2="76"  stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate" style="animation-delay:.3s"/>
+              <line x1="220" y1="220" x2="76"  y2="364" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate" style="animation-delay:.6s"/>
+              <line x1="220" y1="220" x2="364" y2="364" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6 4" class="line-animate" style="animation-delay:.9s"/>
+              <line x1="76"  y1="76"  x2="364" y2="76"  stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+              <line x1="76"  y1="364" x2="364" y2="364" stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+              <line x1="76"  y1="76"  x2="76"  y2="364" stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+              <line x1="364" y1="76"  x2="364" y2="364" stroke="rgba(59,130,246,0.15)" stroke-width="1"/>
+            </svg>
+            <div class="crew-center">
+              <div class="crew-pulse"></div>
+              <div class="crew-hub">
+                <span class="crew-logo">L</span>
+                <span class="crew-name">Liber Inc.</span>
+              </div>
             </div>
-          </div>
-
-          <!-- Department nodes -->
-          <div class="crew-node node-tl" style="--node-color: #3b82f6; --node-bg: #eff6ff">
-            <div class="node-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <div class="crew-node cn-tl" style="--nc:#3b82f6;--nb:#eff6ff">
+              <div class="cn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+              <div class="cn-name">Sales</div><div class="cn-sub">営業</div>
             </div>
-            <div class="node-label">Sales</div>
-            <div class="node-sub">営業</div>
-          </div>
-
-          <div class="crew-node node-tr" style="--node-color: #8b5cf6; --node-bg: #f5f3ff">
-            <div class="node-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg>
+            <div class="crew-node cn-tr" style="--nc:#8b5cf6;--nb:#f5f3ff">
+              <div class="cn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg></div>
+              <div class="cn-name">Marketing</div><div class="cn-sub">マーケ</div>
             </div>
-            <div class="node-label">Marketing</div>
-            <div class="node-sub">マーケティング</div>
-          </div>
-
-          <div class="crew-node node-bl" style="--node-color: #f59e0b; --node-bg: #fffbeb">
-            <div class="node-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            <div class="crew-node cn-bl" style="--nc:#f59e0b;--nb:#fffbeb">
+              <div class="cn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+              <div class="cn-name">Knowledge</div><div class="cn-sub">ナレッジ</div>
             </div>
-            <div class="node-label">Knowledge</div>
-            <div class="node-sub">ナレッジ</div>
-          </div>
-
-          <div class="crew-node node-br" style="--node-color: #10b981; --node-bg: #ecfdf5">
-            <div class="node-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <div class="crew-node cn-br" style="--nc:#10b981;--nb:#ecfdf5">
+              <div class="cn-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="cn-name">Production</div><div class="cn-sub">制作</div>
             </div>
-            <div class="node-label">Production</div>
-            <div class="node-sub">制作</div>
           </div>
         </div>
 
         <div class="tools-section">
-          <h3 class="tools-title">活用ツール・AI</h3>
+          <div class="sec-eyebrow" style="justify-content:center;margin-bottom:24px"><span class="sec-line"></span>活用ツール・AI</div>
           <div class="tools-grid">
-            <div class="tool-item">
+            <div class="tool-card">
               <span class="tool-badge ai">AI</span>
               <span class="tool-name">Claude (Anthropic)</span>
               <span class="tool-desc">業務自動化・コンテンツ生成・戦略立案</span>
             </div>
-            <div class="tool-item">
+            <div class="tool-card">
               <span class="tool-badge ai">AI</span>
               <span class="tool-name">ChatGPT (OpenAI)</span>
               <span class="tool-desc">バナー・LP・広告クリエイティブの画像生成</span>
             </div>
-            <div class="tool-item">
+            <div class="tool-card">
               <span class="tool-badge tool">Tool</span>
               <span class="tool-name">Notion</span>
               <span class="tool-desc">タスク・目標管理・ナレッジベース</span>
             </div>
-            <div class="tool-item">
+            <div class="tool-card">
               <span class="tool-badge tool">Tool</span>
               <span class="tool-name">Google Workspace</span>
               <span class="tool-desc">スプレッドシート・ドキュメント管理</span>
@@ -154,20 +160,29 @@ const { company, departments, stats } = siteData;
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="contact-card">
+    <section id="contact" class="s-contact">
+      <div class="s4-ring s4-ring1" aria-hidden="true"></div>
+      <div class="s4-ring s4-ring2" aria-hidden="true"></div>
+      <div class="s4-ring s4-ring3" aria-hidden="true"></div>
+      <div class="s4-dot s4-dot1" aria-hidden="true"></div>
+      <div class="s4-dot s4-dot2" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2">
+        <div class="contact-inner">
+          <div class="sec-eyebrow" style="color:rgba(255,255,255,0.7);justify-content:center">Contact Us</div>
           <h2 class="contact-title">仲間として、一緒に動こう。</h2>
-          <p class="contact-desc">
-            クリエイティブ制作・SNS運用・LP制作など、幅広いご依頼に対応しています。
-            まずはお気軽にご相談ください。
-          </p>
-          <a href="mailto:contact@liber-inc.com" class="contact-btn">
-            お問い合わせ
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-            </svg>
-          </a>
+          <p class="contact-desc">クリエイティブ制作・SNS運用・LP制作など、幅広いご依頼に対応しています。<br>まずはお気軽にご相談ください。</p>
+          <div class="contact-features">
+            <div class="cf-item"><span class="cf-check">✓</span>バナー・LP制作</div>
+            <div class="cf-item"><span class="cf-check">✓</span>SNS運用・コンテンツ</div>
+            <div class="cf-item"><span class="cf-check">✓</span>広告クリエイティブ</div>
+          </div>
+          <div class="contact-btns">
+            <a href="mailto:contact@liber-inc.com" class="contact-btn-primary">
+              お問い合わせ
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="#departments" class="contact-btn-secondary">部門を見る</a>
+          </div>
         </div>
       </div>
     </section>
@@ -179,7 +194,7 @@ const { company, departments, stats } = siteData;
 <script>
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const el = entry.target as HTMLElement;
           const delay = el.dataset.delay ?? '0';
@@ -190,7 +205,6 @@ const { company, departments, stats } = siteData;
     },
     { threshold: 0.1 }
   );
-
   document.querySelectorAll('[data-animate]').forEach((el, i) => {
     (el as HTMLElement).dataset.delay = String(i * 100);
     observer.observe(el);
@@ -198,516 +212,276 @@ const { company, departments, stats } = siteData;
 </script>
 
 <style>
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-  /* Hero */
+  /* ── HERO ── */
   .hero {
     position: relative;
-    padding: 120px 0 100px;
+    min-height: 100vh;
     overflow: hidden;
-    background: #080d1a;
+    background: linear-gradient(160deg, #0ea5e9 0%, #38bdf8 30%, #7dd3fc 60%, #e0f2fe 85%, #f0f9ff 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 0 0;
   }
 
-  .hero .container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 24px;
+  .hero-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 24px;
+    padding-bottom: 100px;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 50% at 20% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
+  /* Blobs */
+  .blob { position: absolute; border-radius: 50%; pointer-events: none; }
+  .blob-1 { width:700px; height:700px; background:radial-gradient(circle,rgba(255,255,255,0.28) 0%,transparent 70%); top:-200px; left:-150px; }
+  .blob-2 { width:500px; height:500px; background:radial-gradient(circle,rgba(14,165,233,0.2) 0%,transparent 70%); bottom:-100px; right:-100px; }
+  .blob-3 { width:300px; height:300px; background:radial-gradient(circle,rgba(255,255,255,0.35) 0%,transparent 70%); top:10%; right:10%; animation:floatY 7s ease-in-out infinite; }
+  .blob-4 { width:180px; height:180px; background:rgba(255,255,255,0.18); border:2px solid rgba(255,255,255,0.45); bottom:22%; left:8%; animation:floatY 5s ease-in-out infinite 1.5s; border-radius:50%; }
+
+  /* Floating circles */
+  .fc { position:absolute; border-radius:50%; border:2px solid rgba(255,255,255,0.45); pointer-events:none; }
+  .fc-1 { width:120px; height:120px; top:12%; left:6%;  animation:spin 20s linear infinite; }
+  .fc-2 { width:60px;  height:60px;  top:20%; right:8%; animation:floatY 4s ease-in-out infinite; }
+  .fc-3 { width:200px; height:200px; bottom:18%; right:5%; border-style:dashed; border-color:rgba(255,255,255,0.3); animation:spin 30s linear infinite reverse; }
+
+  /* Dots */
+  .dot-s { position:absolute; border-radius:50%; background:rgba(255,255,255,0.7); pointer-events:none; }
+  .dot-s1 { width:10px; height:10px; top:25%;  left:18%;  animation:pulse-d 3s ease-in-out infinite; }
+  .dot-s2 { width:6px;  height:6px;  top:40%;  right:15%; animation:pulse-d 3s ease-in-out infinite .8s; }
+  .dot-s3 { width:14px; height:14px; bottom:35%; left:10%; animation:pulse-d 3s ease-in-out infinite 1.5s; }
+  .dot-s4 { width:8px;  height:8px;  top:15%;  right:25%; animation:pulse-d 3s ease-in-out infinite 2s; }
+
+  .diamond { position:absolute; width:22px; height:22px; background:rgba(255,255,255,0.6); transform:rotate(45deg); top:55%; left:20%; animation:floatY 6s ease-in-out infinite 1s; pointer-events:none; }
+
+  /* Wave */
+  .hero-wave {
+    position: absolute; bottom: -2px; left: 0; right: 0; height: 120px;
+    background: white;
+    clip-path: ellipse(55% 60% at 50% 100%);
   }
 
-  .hero-noise {
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 128px;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.4;
-  }
-
-  /* Floating shapes */
-  .shape {
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  @keyframes float-slow   { 0%,100% { transform: translateY(0) rotate(0deg); }   50% { transform: translateY(-18px) rotate(5deg); } }
-  @keyframes float-med    { 0%,100% { transform: translateY(0) rotate(0deg); }   50% { transform: translateY(-12px) rotate(-8deg); } }
-  @keyframes spin-slow    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  @keyframes pulse-shape  { 0%,100% { opacity: 0.12; transform: scale(1); }      50% { opacity: 0.22; transform: scale(1.08); } }
-
-  .shape-circle-lg {
-    width: 320px; height: 320px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
-    top: -80px; right: -60px;
-    animation: float-slow 8s ease-in-out infinite;
-  }
-  .shape-circle-md {
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(59,130,246,0.07);
-    border: 1px solid rgba(59,130,246,0.15);
-    bottom: 40px; left: 5%;
-    animation: float-med 6s ease-in-out infinite 1s;
-  }
-  .shape-circle-sm {
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    background: rgba(212,175,55,0.12);
-    top: 15%; right: 18%;
-    animation: pulse-shape 4s ease-in-out infinite;
-  }
-  .shape-ring {
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    border: 2px solid rgba(212,175,55,0.1);
-    bottom: -40px; right: 12%;
-    animation: spin-slow 20s linear infinite;
-  }
-  .shape-diamond {
-    width: 28px; height: 28px;
-    background: rgba(212,175,55,0.25);
-    transform: rotate(45deg);
-    top: 30%; left: 8%;
-    animation: float-med 5s ease-in-out infinite 2s;
-  }
-  .shape-line-1 {
-    width: 120px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    top: 25%; right: 8%;
-    animation: float-slow 7s ease-in-out infinite 0.5s;
-  }
-  .shape-line-2 {
-    width: 80px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
-    top: 60%; left: 12%;
-    transform: rotate(-30deg);
-    animation: float-med 6s ease-in-out infinite 3s;
-  }
-
+  /* Hero content elements */
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 16px;
-    background: rgba(212, 175, 55, 0.12);
-    color: #d4af37;
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 18px;
+    background: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 100px; backdrop-filter: blur(8px);
+    font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.15);
   }
+  .badge-dot { width:6px; height:6px; border-radius:50%; background:white; flex-shrink:0; }
 
   .hero-title {
-    font-size: clamp(2.2rem, 5.5vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    color: #ffffff;
+    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    font-weight: 900; letter-spacing: -.03em; line-height: 1.08;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,60,120,0.4), 0 4px 24px rgba(0,40,100,0.3), 0 8px 48px rgba(0,20,80,0.2);
   }
 
   .hero-description {
-    max-width: 560px;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.55);
-    line-height: 1.9;
+    max-width: 680px; font-size: 1rem;
+    color: rgba(255,255,255,0.95); line-height: 1.9;
+    text-shadow: 0 1px 6px rgba(0,40,100,0.3);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    padding: 16px 28px; border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .hero-tags { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .hero-tag {
+    padding: 7px 18px;
+    background: rgba(255,255,255,0.92); border-radius: 100px;
+    font-size: .8rem; font-weight: 700; color: #1e40af;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
   }
 
   .hero-stats {
-    display: flex;
-    gap: 0;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    margin-top: 8px;
-    overflow: hidden;
+    display: flex; gap: 0;
+    background: rgba(255,255,255,0.92); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
   }
+  .stat { padding: 18px 32px; border-right: 1px solid rgba(0,0,0,0.07); }
+  .stat:last-child { border-right: none; }
+  .stat-value { font-size: 1.4rem; font-weight: 800; color: #1e40af; display: block; }
+  .stat-label { font-size: .72rem; color: #64748b; display: block; margin-top: 2px; white-space: nowrap; }
 
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 20px 36px;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  .hero-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; background: #1e40af; color: white;
+    border-radius: 12px; font-weight: 800; font-size: .95rem;
+    box-shadow: 0 8px 32px rgba(30,64,175,0.4);
+    transition: transform .2s, box-shadow .2s;
   }
-
-  .stat:last-child {
-    border-right: none;
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(30,64,175,0.5); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 14px 28px; background: rgba(255,255,255,0.92); color: #1e40af;
+    border-radius: 12px; font-weight: 700; font-size: .95rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transition: transform .2s;
   }
+  .btn-secondary:hover { transform: translateY(-2px); }
 
-  .stat-value {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #d4af37;
-    letter-spacing: -0.02em;
+  /* ── SECTIONS COMMON ── */
+  .section { padding: 100px 0; }
+
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .sec-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: #3b82f6; margin-bottom: 12px;
   }
-
-  .stat-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    background: #d4af37;
-    color: #080d1a;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: background 0.15s, transform 0.15s;
-    margin-top: 4px;
-    letter-spacing: 0.01em;
-  }
-
-  .cta-btn:hover {
-    background: #e8c84a;
-    transform: translateY(-2px);
-  }
-
-  /* Sections */
-  .section {
-    padding: 80px 0;
-  }
-
-  .section-alt {
-    background: white;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
+  .sec-line { width: 24px; height: 2px; background: #3b82f6; border-radius: 2px; flex-shrink:0; }
   .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
+    font-size: 2.2rem; font-weight: 800; letter-spacing: -.03em;
+    color: #0f172a; margin-bottom: 12px;
+  }
+  .section-subtitle { font-size: .95rem; color: #64748b; line-height: 1.8; max-width: 560px; margin: 0 auto; }
+
+  /* ── DEPARTMENTS ── */
+  .s-departments {
+    background: #ffffff;
+    position: relative; overflow: hidden;
+  }
+  .s-blob { position: absolute; border-radius: 50%; pointer-events: none; }
+  .sb-1 { width:600px; height:600px; background:radial-gradient(circle,rgba(224,242,254,0.9) 0%,transparent 70%); top:-200px; right:-150px; }
+  .sb-2 { width:400px; height:400px; background:radial-gradient(circle,rgba(219,234,254,0.7) 0%,transparent 70%); bottom:-100px; left:-100px; }
+  .s-dots {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(circle, rgba(59,130,246,0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
-  .section-subtitle {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-  }
+  .departments-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
 
-  /* Departments Grid */
-  .departments-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  /* ── STRUCTURE ── */
+  .s-structure {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f0f9ff 0%, #dbeafe 50%, #f0f9ff 100%);
+    position: relative; overflow: hidden;
   }
+  .s3-circle-1 { position:absolute; width:500px; height:500px; border-radius:50%; border:1px solid rgba(59,130,246,0.1); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .s3-circle-2 { position:absolute; width:750px; height:750px; border-radius:50%; border:1px solid rgba(59,130,246,0.06); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .s3-blob-r { position:absolute; width:350px; height:350px; border-radius:50%; background:radial-gradient(circle,rgba(186,230,255,0.5) 0%,transparent 70%); top:5%; right:3%; pointer-events:none; }
 
-  /* Crew Map */
-  .crew-map {
-    position: relative;
-    width: 420px;
-    height: 420px;
-    margin: 0 auto 48px;
-  }
+  /* Crew map */
+  .crew-wrap { display:flex; align-items:center; justify-content:center; margin: 48px 0; }
+  .crew-map { position:relative; width:440px; height:440px; }
+  .crew-lines { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
 
-  .crew-lines {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
+  @keyframes dash-move { to { stroke-dashoffset: -20; } }
+  .line-animate { animation: dash-move 2s linear infinite; }
 
-  @keyframes dash-move {
-    to { stroke-dashoffset: -20; }
+  .crew-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:flex; align-items:center; justify-content:center; }
+  .crew-pulse { position:absolute; width:110px; height:110px; border-radius:50%; background:rgba(59,130,246,0.12); animation:pulse-ring 2.5s ease-out infinite; }
+  .crew-hub {
+    position:relative; width:88px; height:88px; border-radius:50%;
+    background:linear-gradient(135deg,#3b82f6,#1d4ed8);
+    box-shadow:0 8px 40px rgba(59,130,246,0.4);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
   }
-
-  .line-animate {
-    animation: dash-move 2s linear infinite;
-  }
-
-  /* Center hub */
-  .crew-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .crew-center-pulse {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: rgba(59, 130, 246, 0.08);
-    animation: pulse-ring 2.5s ease-out infinite;
-  }
-
-  @keyframes pulse-ring {
-    0% { transform: scale(0.85); opacity: 0.8; }
-    100% { transform: scale(1.4); opacity: 0; }
-  }
-
-  .crew-center-inner {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
-    gap: 1px;
-  }
-
-  .crew-center-logo {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: white;
-    line-height: 1;
-  }
-
-  .crew-center-name {
-    font-size: 0.5rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-
-  /* Department nodes */
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
+  .crew-logo { font-size:1.5rem; font-weight:900; color:white; line-height:1; }
+  .crew-name { font-size:.42rem; color:rgba(255,255,255,0.75); letter-spacing:.05em; white-space:nowrap; }
 
   .crew-node {
-    position: absolute;
-    width: 110px;
-    background: var(--node-bg);
-    border: 2px solid var(--node-color);
-    border-radius: 14px;
-    padding: 14px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    transition: box-shadow 0.2s, transform 0.2s;
+    position:absolute; width:116px;
+    background:white; border-radius:16px; padding:16px 12px;
+    box-shadow:0 4px 24px rgba(0,0,0,0.08); text-align:center;
+    border:1px solid rgba(59,130,246,0.12);
+    transition:.2s;
   }
+  .crew-node:hover { box-shadow:0 8px 32px rgba(59,130,246,0.2); transform:scale(1.05) !important; }
+  .cn-tl { top:16px;    left:16px;    animation:floatY 4s ease-in-out infinite; }
+  .cn-tr { top:16px;    right:16px;   animation:floatY 4s ease-in-out infinite .8s; }
+  .cn-bl { bottom:16px; left:16px;    animation:floatY 4s ease-in-out infinite 1.6s; }
+  .cn-br { bottom:16px; right:16px;   animation:floatY 4s ease-in-out infinite 2.4s; }
+  .cn-icon { width:36px; height:36px; border-radius:10px; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; background:var(--nb); color:var(--nc); }
+  .cn-name { font-size:.82rem; font-weight:700; color:#0f172a; }
+  .cn-sub  { font-size:.65rem; color:#94a3b8; margin-top:2px; }
 
-  .crew-node:hover {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    transform: scale(1.05) !important;
+  /* Tools */
+  .tools-section { padding-top: 32px; border-top: 1px solid rgba(59,130,246,0.15); }
+  .tools-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .tool-card {
+    background:white; border:1px solid rgba(59,130,246,0.12);
+    border-radius:14px; padding:18px 14px;
+    display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;
+    box-shadow:0 2px 12px rgba(0,0,0,0.05);
   }
+  .tool-badge { padding:3px 10px; border-radius:100px; font-size:.65rem; font-weight:700; }
+  .tool-badge.ai   { background:#eff6ff; color:#3b82f6; }
+  .tool-badge.tool { background:#f0fdf4; color:#16a34a; }
+  .tool-name { font-size:.82rem; font-weight:700; color:#1e293b; }
+  .tool-desc { font-size:.72rem; color:#94a3b8; line-height:1.5; }
 
-  .node-tl { top: 20px;  left: 20px;  animation: float 4s ease-in-out infinite; }
-  .node-tr { top: 20px;  right: 20px; animation: float 4s ease-in-out infinite 0.8s; }
-  .node-bl { bottom: 20px; left: 20px;  animation: float 4s ease-in-out infinite 1.6s; }
-  .node-br { bottom: 20px; right: 20px; animation: float 4s ease-in-out infinite 2.4s; }
-
-  .node-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--node-color);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  /* ── CONTACT ── */
+  .s-contact {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #3b82f6 100%);
+    position: relative; overflow: hidden;
   }
-
-  .node-label {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--color-text);
-    line-height: 1;
+  .s-contact::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 80% 60% at 30% 40%, rgba(255,255,255,0.07) 0%, transparent 60%);
+    pointer-events:none;
   }
+  .s4-ring { position:absolute; border-radius:50%; pointer-events:none; }
+  .s4-ring1 { width:500px; height:500px; border:1px solid rgba(255,255,255,0.08); top:-150px; right:-100px; }
+  .s4-ring2 { width:300px; height:300px; border:1px solid rgba(255,255,255,0.06); bottom:-80px; left:-60px; }
+  .s4-ring3 { width:200px; height:200px; border:1px solid rgba(255,255,255,0.1); top:10%; left:20%; animation:spin 25s linear infinite; }
+  .s4-dot { position:absolute; border-radius:50%; pointer-events:none; }
+  .s4-dot1 { width:14px; height:14px; background:rgba(255,255,255,0.2); top:20%; right:15%; animation:pulse-d 3s ease-in-out infinite; }
+  .s4-dot2 { width:8px;  height:8px;  background:rgba(255,255,255,0.15); bottom:25%; left:12%; animation:pulse-d 3s ease-in-out infinite 1s; }
 
-  .node-sub {
-    font-size: 0.68rem;
-    color: var(--color-text-muted);
-    font-weight: 500;
+  .contact-inner { max-width:680px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:20px; }
+  .contact-title { font-size:2.2rem; font-weight:800; letter-spacing:-.03em; color:white; }
+  .contact-desc { font-size:.95rem; color:rgba(255,255,255,0.8); line-height:1.9; }
+
+  .contact-features { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
+  .cf-item { display:flex; align-items:center; gap:8px; font-size:.85rem; color:rgba(255,255,255,0.85); font-weight:500; }
+  .cf-check { width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:.65rem; color:white; flex-shrink:0; }
+
+  .contact-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .contact-btn-primary {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 32px; background:white; color:#1e40af;
+    border-radius:12px; font-weight:800; font-size:.95rem;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .contact-btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,0,0,0.24); }
+  .contact-btn-secondary {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:14px 28px; background:rgba(255,255,255,0.15); color:white;
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:12px; font-weight:700; font-size:.95rem;
+    backdrop-filter:blur(8px); transition:transform .2s;
+  }
+  .contact-btn-secondary:hover { transform:translateY(-2px); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes floatY    { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-10px)} }
+  @keyframes spin      { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes pulse-d   { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.3)} }
+  @keyframes pulse-ring{ 0%{transform:scale(.85);opacity:.8} 100%{transform:scale(1.5);opacity:0} }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .departments-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction:column; gap:0; }
+    .stat { border-right:none; border-bottom:1px solid rgba(0,0,0,0.07); }
+    .stat:last-child { border-bottom:none; }
+    .tools-grid { grid-template-columns: repeat(2,1fr); }
+    .crew-map { width:320px; height:320px; }
+    .crew-node { width:84px; padding:10px 8px; }
+    .crew-hub { width:68px; height:68px; }
   }
 
   @media (max-width: 480px) {
-    .crew-map {
-      width: 320px;
-      height: 320px;
-    }
-    .crew-node {
-      width: 84px;
-      padding: 10px 8px;
-    }
-    .crew-center-inner {
-      width: 64px;
-      height: 64px;
-    }
-  }
-
-  /* Tools */
-  .tools-section {
-    padding-top: 32px;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .tools-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--color-text);
-  }
-
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .tool-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-  }
-
-  .tool-badge {
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .tool-badge.ai {
-    background: rgba(139, 92, 246, 0.1);
-    color: #8b5cf6;
-  }
-
-  .tool-badge.tool {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--color-primary);
-  }
-
-  .tool-name {
-    font-weight: 600;
-    font-size: 0.875rem;
-    flex-shrink: 0;
-  }
-
-  .tool-desc {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-  }
-
-  /* Contact */
-  .contact-card {
-    background: linear-gradient(135deg, var(--color-primary) 0%, #2563eb 100%);
-    border-radius: 16px;
-    padding: 60px;
-    text-align: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .contact-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .contact-desc {
-    max-width: 520px;
-    font-size: 0.95rem;
-    opacity: 0.85;
-    line-height: 1.8;
-  }
-
-  .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: white;
-    color: var(--color-primary);
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-top: 8px;
-    transition: opacity 0.15s, transform 0.15s;
-  }
-
-  .contact-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .departments-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-stats {
-      gap: 24px;
-      padding: 20px 28px;
-    }
-
-    .structure-flow {
-      flex-direction: column;
-    }
-
-    .flow-arrow {
-      transform: rotate(90deg);
-    }
-
-    .knowledge-arrow {
-      transform: none;
-    }
-
-    .tools-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-card {
-      padding: 40px 24px;
-    }
+    .hero-stats { width:100%; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .contact-features { flex-direction:column; align-items:center; }
   }
 </style>
